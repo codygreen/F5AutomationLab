@@ -1,8 +1,12 @@
 #-------- setup/output.tf --------
 output "secret" {
-  value = "${aws_iam_access_key.automation_lab.*.encrypted_secret}"
+  value = "${module.setup-iam.secret}"
 }
 
 output "password" {
-  value = "${aws_iam_user_login_profile.automation_lab.*.encrypted_password}"
+  value = "${module.setup-iam.password}"
+}
+
+output "test" {
+  value = "${length(module.setup-iam.student_arns)}"
 }

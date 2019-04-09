@@ -1,8 +1,4 @@
-#-------- setup/variables.tf --------
-variable "name" {
-  default = "automation_lab"
-}
-
+#-------- setup-iam/variables.tf --------
 variable "number_students" {
   description = "Desired number of student lab accounts to create"
   default     = 1
