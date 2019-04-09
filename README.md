@@ -19,3 +19,6 @@ terraform apply --auto-approve
 You can decrypt the password using:
 ```
 terraform output password | base64 --decode | keybase pgp decrypt
+```
+
+You can access your Cloud9 IDE via https://us-east-2.console.aws.amazon.com/cloud9/home?region=us-east-2

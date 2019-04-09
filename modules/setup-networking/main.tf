@@ -16,7 +16,7 @@ resource "aws_vpc" "setup_vpc" {
   enable_dns_support   = true
 
   tags {
-    Name = "${var.name}"
+    Name = "${var.name}-${count.index}"
   }
 }
 

@@ -29,15 +29,13 @@ module "setup-networking" {
   student_arns    = "${module.setup-iam.student_arns}"
 }
 
-# # create Cloud9 instances
-# module "setup-cloud9" {
-#   source = "../modules/setup-cloud9"
+# create Cloud9 instances
+module "setup-cloud9" {
+  source = "../modules/setup-cloud9"
 
-
-#   name            = "${var.name}"
-#   number_students = "${var.number_students}"
-#   vpc_ids         = "${module.setup-networking.vpc_ids}"
-#   student_arns    = "${module.setup-iam.student_arns}"
-#   subnet_ids      = "${module.setup-networking.subnet_ids}"
-# }
-
+  name            = "${var.name}"
+  number_students = "${var.number_students}"
+  vpc_ids         = "${module.setup-networking.vpc_ids}"
+  student_arns    = "${module.setup-iam.student_arns}"
+  subnet_ids      = "${module.setup-networking.subnet_ids}"
+}
