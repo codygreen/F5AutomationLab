@@ -61,7 +61,7 @@ resource "aws_default_route_table" "setup_private_rt" {
 resource "aws_subnet" "setup_public_subnet" {
   count                   = "${aws_vpc.setup_vpc.count}"
   vpc_id                  = "${aws_vpc.setup_vpc.*.id[count.index]}"
-  cidr_block              = "${var.public_cidrs[count.index]}"
+  cidr_block              = "${var.public_cidrs[0]}"
   map_public_ip_on_launch = true
   availability_zone       = "${data.aws_availability_zones.available.names[count.index]}"
 

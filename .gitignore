@@ -1,3 +1,7 @@
 
 setup/.terraform
 terraform.tfvars
+labs/lab1/.terraform
+*.backup
+*.tfstate
+labs/final/.terraform

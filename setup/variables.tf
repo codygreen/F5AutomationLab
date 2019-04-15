@@ -5,7 +5,7 @@ variable "name" {
 
 variable "number_students" {
   description = "Desired number of student lab accounts to create"
-  default     = 1
+  default     = 2
 }
 
 variable "aws_region" {
