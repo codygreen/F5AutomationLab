@@ -5,18 +5,14 @@ data "http" "myIP" {
   url = "http://ipv4.icanhazip.com"
 }
 
-# Find Linux 2 AMI
-data "aws_ami" "amazon-linux-2" {
+# Find Ubuntu AMI
+data "aws_ami" "compute" {
   most_recent = true
 
-  #   owners      = ["amazon"]
   owners = ["099720109477"] # Canonical
 
   filter {
     name = "name"
-
-    # AWS Linux 2
-    # values = ["amzn2-ami-hvm*x86*"]
 
     # Ubuntu Bionic 
     values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
@@ -95,7 +91,7 @@ resource "aws_security_group" "compute" {
 }
 
 resource "aws_instance" "udf" {
-  ami   = "${data.aws_ami.amazon-linux-2.id}"
+  ami   = "${data.aws_ami.compute.id}"
   count = "${var.instance_count}"
 
   #   associate_public_ip_address = true
@@ -136,8 +132,8 @@ resource "local_file" "save_inventory" {
   filename   = "./inventory"
 }
 
-# Check if EC2 instances are ready
-resource "null_resource" "wait" {
+# run ansible playbook
+resource "null_resource" "ansible" {
   provisioner "local-exec" {
     command = <<-EOF
     aws ec2 wait instance-status-ok --instance-ids ${element(aws_instance.udf.*.id, 0)}
